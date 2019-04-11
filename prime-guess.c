@@ -24,7 +24,7 @@
 /*
 A prime number guessing game.
 TODO: 	
-* 	!!!!If they quit at any point, save the high score to a file.
+*		Save the high score to a file.
 * 
 * 		Change the input methods to use getline().
 * 
@@ -118,7 +118,7 @@ _Bool ask_to_play_again(_Bool is_play_again)
 			"Press n to quit. Press any other character to continue:");
 	
 	char play_again;
-	char c;
+	int c;
 	while ( (c = getchar()) != '\n'){};//munches extra chars in stdin
 	
 	//Switches to get single character mode.
