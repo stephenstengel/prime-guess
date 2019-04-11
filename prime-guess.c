@@ -28,12 +28,17 @@ TODO:
 * 
 * 		Change the input methods to use getline().
 * 
+* 		Use what I know now about character input.
+* 
+* 		If they guess wrong, tell what their guess is divisible by.
+* 
 * 		If they say quit, tell a cool fact about that last number.
 * 		Modes-
 			Sequential mode. Guess the next prime.
 			Random prime mode. 	Starts at a random prime and asks for the next
 								prime.
 			Backwards mode. Asks for the preceding prime.
+
 			Must be able to switch between modes without stopping program.
 */
 
