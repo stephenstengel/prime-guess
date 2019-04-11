@@ -97,7 +97,17 @@ int main()
 		char play_again;
 		char c;
 		while ( (c = getchar()) != '\n'){};//munches extra chars in stdin
-		scanf("%c", &play_again);
+		//~ scanf("%c", &play_again);
+		
+		
+		//---------new method
+		
+		
+		
+		
+		//----------end new bit
+		
+		
 		printf("\n");
 		
 		if (play_again == 'y' || play_again == 'Y')
