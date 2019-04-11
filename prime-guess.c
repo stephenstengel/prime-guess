@@ -68,6 +68,8 @@ _Bool is_guess_correct(int user_guess, int next_prime);
 
 _Bool ask_to_play_again(_Bool is_play_again);
 
+void hello_there(void);
+
 
 int main()
 {
@@ -78,6 +80,21 @@ int main()
 	_Bool is_play_again;
 	is_play_again = TRUE;
 	
+	hello_there();
+
+	while (is_play_again)
+	{
+		start_point_prime = play_setup();
+		high_score = play(start_point_prime, high_score);
+		is_play_again = ask_to_play_again(is_play_again);
+	}
+	
+	return 0;
+}
+
+
+void hello_there(void)
+{
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 			       "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	
@@ -90,15 +107,7 @@ int main()
 
 	printf("\nHello there! "
 			"This is a game where you guess the next prime number!\n\n");	
-
-	while (is_play_again)
-	{
-		start_point_prime = play_setup();
-		high_score = play(start_point_prime, high_score);
-		is_play_again = ask_to_play_again(is_play_again);
-	}
 	
-	return 0;
 }
 
 
@@ -140,6 +149,7 @@ int play_setup()
 {
 	int start_point_prime;
 	start_point_prime = start_point_maker();
+	
 	return start_point_prime;
 }
 
@@ -157,7 +167,7 @@ int play(int start_point_prime, int high_score)
 	
 	int next_prime;
 	
-	while(is_correct)
+	while (is_correct)
 	{
 		next_prime = next_prime_finder(start_point_prime);
 		is_correct = is_guess_correct(user_guess, next_prime);
@@ -229,7 +239,7 @@ int get_guess(int start_point_prime)
 
 _Bool is_guess_correct(int user_guess, int next_prime)
 {
-	if(user_guess == next_prime)
+	if (user_guess == next_prime)
 	{
 		return TRUE;
 	}
@@ -241,20 +251,21 @@ _Bool is_guess_correct(int user_guess, int next_prime)
 
 int prime_checker(int number_to_test_for_primality)
 {
-	if(number_to_test_for_primality < 2)
+	if (number_to_test_for_primality < 2)
 	{
 		return FALSE;
 	}
 	int divisor;
 	divisor = 2;
-	while(divisor <= sqrt(number_to_test_for_primality))
+	while (divisor <= sqrt(number_to_test_for_primality))
 	{
-		if(number_to_test_for_primality % divisor == 0)
+		if (number_to_test_for_primality % divisor == 0)
 		{
 			return FALSE;
 		}
 		divisor++;
 	}
+	
 	return TRUE;
 }
 
@@ -266,7 +277,7 @@ int next_prime_finder(int start_number)
 			
 	while (i < 2000000000)
 	{
-		if(prime_checker(i))
+		if (prime_checker(i))
 		{
 			return i;
 		}
@@ -288,7 +299,7 @@ int start_point_maker()
 	_Bool is_start_point_prime;
 	is_start_point_prime = FALSE;
 	
-	while(!is_start_point_prime)
+	while (!is_start_point_prime)
 	{
 		printf("What prime number would you like to start at? (Enter 0 to quit): ");
 		scanf("%d", &start_point_request);
