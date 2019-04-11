@@ -66,6 +66,9 @@ int next_prime_finder(int start_number);
 
 _Bool is_guess_correct(int user_guess, int next_prime);
 
+_Bool ask_to_play_again(_Bool is_play_again);
+
+
 int main()
 {
 	//printf("Size of int: %lu\n", sizeof(int));
@@ -92,38 +95,46 @@ int main()
 	{
 		start_point_prime = play_setup();
 		high_score = play(start_point_prime, high_score);
-		
-		printf("Play again? (Enter y/n):");
-		char play_again;
-		char c;
-		while ( (c = getchar()) != '\n'){};//munches extra chars in stdin
-		//~ scanf("%c", &play_again);
-		
-		
-		//---------new method
-		
-		
-		
-		
-		//----------end new bit
-		
-		
-		printf("\n");
-		
-		if (play_again == 'y' || play_again == 'Y')
-		{
-			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-			       "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-		}
-		else
-		{
-			printf("Goodbye!\n\n");
-			is_play_again = FALSE;
-		}
+		is_play_again = ask_to_play_again(is_play_again);
 	}
 	
 	return 0;
 }
+
+
+_Bool ask_to_play_again(_Bool is_play_again)
+{
+	printf("Play again?\n"
+			"Press n to quit. Press any other character to continue:");
+	
+	char play_again;
+	char c;
+	while ( (c = getchar()) != '\n'){};//munches extra chars in stdin
+	
+	//Switches to get single character mode.
+	system("stty raw");
+	
+	play_again = getchar();
+	
+	//Switches back to get line mode.
+	system("stty cooked");
+	
+	printf("\n");
+	
+	if (play_again == 'n' || play_again == 'N')
+	{
+		printf("Goodbye!\n\n");
+		is_play_again = FALSE;
+	}
+	else
+	{
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+		       "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	}
+
+	return is_play_again;
+}
+
 
 int play_setup()
 {
@@ -131,6 +142,7 @@ int play_setup()
 	start_point_prime = start_point_maker();
 	return start_point_prime;
 }
+
 
 int play(int start_point_prime, int high_score)
 {
@@ -184,6 +196,7 @@ int play(int start_point_prime, int high_score)
 	
 	return high_score;
 }
+
 
 int get_guess(int start_point_prime)
 {
