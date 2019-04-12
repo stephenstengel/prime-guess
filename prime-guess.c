@@ -117,21 +117,21 @@ _Bool ask_to_play_again(_Bool is_play_again)
 	printf("Play again?\n"
 			"Press n to quit. Press any other character to continue:");
 	
-	char play_again;
+	int user_response;
 	int c;
 	while ( (c = getchar()) != '\n'){};//munches extra chars in stdin
 	
 	//Switches to get single character mode.
 	system("stty raw");
 	
-	play_again = getchar();
+	user_response = getchar();
 	
 	//Switches back to get line mode.
 	system("stty cooked");
 	
 	printf("\n");
 	
-	if (play_again == 'n' || play_again == 'N')
+	if (user_response == 'n' || user_response == 'N')
 	{
 		printf("Goodbye!\n\n");
 		is_play_again = FALSE;
